@@ -45,6 +45,8 @@ def test_string_to_number(item1):
     assert string_to_number == 5
 
 
-# def test_instantiate_from_csv():
-#     """TestCase №7 создание объекта из файла csv"""
-
+def test_instantiate_from_csv():
+    """TestCase №7 создание объекта из файла csv"""
+    Item.all = []
+    Item.instantiate_from_csv('/Users/mvideo/PycharmProjects/electronics-shop-project/src/items.csv')
+    assert len(Item.all) == 5
