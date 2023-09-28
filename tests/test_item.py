@@ -50,3 +50,13 @@ def test_instantiate_from_csv():
     Item.all = []
     Item.instantiate_from_csv('../src/items.csv')
     assert len(Item.all) == 5
+
+
+def test_repr(item1):
+    """TestCase №8 отображение в режиме отладки"""
+    assert repr(item1) == "Item('КрутойСмартфон', 10000, 20)"
+
+
+def test_str(item1):
+    """TestCase №8 отображение в пользовательском режиме"""
+    assert str(item1) == 'КрутойСмартфон'
