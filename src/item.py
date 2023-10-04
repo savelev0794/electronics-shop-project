@@ -60,7 +60,18 @@ class Item:
         self.price *= self.pay_rate
 
     def __repr__(self):
+        """Отображение в режиме отладки"""
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
+        """Отображение в пользовательском режиме"""
         return f'{self.__name}'
+
+    def __add__(self, other):
+        """
+        Складывает экземпляры класса `Phone` и `Item` (сложение по количеству товара в магазине)
+        Проверяет, чтобы нельзя было сложить `Phone` или `Item` с экземплярами не `Phone` или `Item` классов.
+        """
+        if not issubclass(other.__class__, self.__class__):
+            raise ValueError('Складывать можно только объекты Item и дочерние от них.')
+        return self.quantity + other.quantity

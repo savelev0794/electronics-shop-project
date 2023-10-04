@@ -2,6 +2,7 @@
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
@@ -60,3 +61,9 @@ def test_repr(item1):
 def test_str(item1):
     """TestCase №8 отображение в пользовательском режиме"""
     assert str(item1) == 'КрутойСмартфон'
+
+
+def test_add(item1):
+    """TestCase № 9 проверка сложения количества товаров экземпляров Item и Phone"""
+    phone1 = Phone('iPhone', 50000, 6, 1)
+    assert item1 + phone1 == 26
