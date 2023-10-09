@@ -3,6 +3,7 @@ import pytest
 
 from src.item import Item
 from src.phone import Phone
+from src.item import InstantiateCSVError
 
 
 @pytest.fixture
@@ -64,6 +65,19 @@ def test_str(item1):
 
 
 def test_add(item1):
-    """TestCase № 9 проверка сложения количества товаров экземпляров Item и Phone"""
+    """TestCase № 9 сложение товаров экземпляров Item и Phone"""
     phone1 = Phone('iPhone', 50000, 6, 1)
     assert item1 + phone1 == 26
+
+
+def test_file_not_found_error():
+    """TestCase № 10 вывод сообщения об ошибке при отсутствующем файле"""
+    with pytest.raises(FileNotFoundError):
+        assert Item.instantiate_from_csv('') == print('FileNotFoundError: Отсутствует файл item.csv')
+
+
+def test_instantiate_csv_error():
+    """TestCase № 11 вывод сообщение об ошибке при поврежденном файле"""
+    with pytest.raises(InstantiateCSVError):
+        assert Item.instantiate_from_csv('../tests/test_items.csv') == print('InstantiateCSVError:'
+                                                                             'Файл item.csv поврежден')
